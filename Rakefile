@@ -139,41 +139,41 @@ namespace :install do
   desc 'Install The Silver Searcher'
   task :the_silver_searcher do
     step 'the_silver_searcher'
-    brew_install 'the_silver_searcher'
+    #brew_install 'the_silver_searcher'
   end
 
   desc 'Install iTerm'
   task :iterm do
     step 'iterm2'
     unless app? 'iTerm'
-      brew_cask_install 'iterm2'
+      #brew_cask_install 'iterm2'
     end
   end
 
   desc 'Install ctags'
   task :ctags do
-    step 'ctags'
-    brew_install 'ctags'
+    #step 'ctags'
+    #brew_install 'ctags'
   end
 
   desc 'Install reattach-to-user-namespace'
   task :reattach_to_user_namespace do
     step 'reattach-to-user-namespace'
-    brew_install 'reattach-to-user-namespace'
+    #brew_install 'reattach-to-user-namespace'
   end
 
   desc 'Install tmux'
   task :tmux do
     step 'tmux'
     # tmux copy-pipe function needs tmux >= 1.8
-    brew_install 'tmux', :requires => '>= 2.1'
+    #brew_install 'tmux', :requires => '>= 2.1'
   end
 
   desc 'Install MacVim'
   task :macvim do
     step 'MacVim'
     unless app? 'MacVim'
-      brew_cask_install 'macvim'
+     # brew_cask_install 'macvim'
     end
 
     bin_dir = File.expand_path('~/bin')
@@ -202,7 +202,7 @@ exec /Applications/MacVim.app/Contents/MacOS/Vim "$@"
   task :vundle do
     step 'vundle'
     install_github_bundle 'VundleVim','Vundle.vim'
-    sh '~/bin/vim -c "PluginInstall!" -c "q" -c "q"'
+    sh 'vim -c "PluginInstall!" -c "q" -c "q"'
   end
 end
 
@@ -228,14 +228,14 @@ LINKED_FILES = filemap(
 
 desc 'Install these config files.'
 task :install do
-  Rake::Task['install:brew'].invoke
-  Rake::Task['install:brew_cask'].invoke
-  Rake::Task['install:the_silver_searcher'].invoke
-  Rake::Task['install:iterm'].invoke
-  Rake::Task['install:ctags'].invoke
-  Rake::Task['install:reattach_to_user_namespace'].invoke
-  Rake::Task['install:tmux'].invoke
-  Rake::Task['install:macvim'].invoke
+  #Rake::Task['install:brew'].invoke
+  #Rake::Task['install:brew_cask'].invoke
+  #Rake::Task['install:the_silver_searcher'].invoke
+  #Rake::Task['install:iterm'].invoke
+  #Rake::Task['install:ctags'].invoke
+  #Rake::Task['install:reattach_to_user_namespace'].invoke
+  #Rake::Task['install:tmux'].invoke
+  #Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
   # TODO run gem ctags?
@@ -253,24 +253,24 @@ task :install do
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke
 
-  step 'iterm2 colorschemes'
-  colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
-  dark  = colorschemes !~ /Solarized Dark/
-  light = colorschemes !~ /Solarized Light/
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
+  #step 'iterm2 colorschemes'
+  #colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
+  #dark  = colorschemes !~ /Solarized Dark/
+  #light = colorschemes !~ /Solarized Light/
+  #sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
+  #sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
 
-  step 'iterm2 profiles'
-  puts
-  puts "  Your turn!"
-  puts
-  puts "  Go and manually set up Solarized Light and Dark profiles in iTerm2."
-  puts "  (You can do this in 'Preferences' -> 'Profiles' by adding a new profile,"
-  puts "  then clicking the 'Colors' tab, 'Load Presets...' and choosing a Solarized option.)"
-  puts "  Also be sure to set Terminal Type to 'xterm-256color' in the 'Terminal' tab."
-  puts
-  puts "  Enjoy!"
-  puts
+  #step 'iterm2 profiles'
+  #puts
+  #puts "  Your turn!"
+  #puts
+  #puts "  Go and manually set up Solarized Light and Dark profiles in iTerm2."
+  #puts "  (You can do this in 'Preferences' -> 'Profiles' by adding a new profile,"
+  #puts "  then clicking the 'Colors' tab, 'Load Presets...' and choosing a Solarized option.)"
+  #puts "  Also be sure to set Terminal Type to 'xterm-256color' in the 'Terminal' tab."
+  #puts
+  #puts "  Enjoy!"
+  #puts
 end
 
 desc 'Uninstall these config files.'
