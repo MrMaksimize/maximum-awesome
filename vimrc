@@ -136,7 +136,7 @@ autocmd BufWritePre * call whitespace#strip_trailing()
 
 " On Save, call Prettier "
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md Prettier
 
 
 " Fix Cursor in TMUX
